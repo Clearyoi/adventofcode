@@ -41,5 +41,4 @@ def run_comp():
 			print('op:', op, 'i', i)
 			return
 
-
 run_comp()
