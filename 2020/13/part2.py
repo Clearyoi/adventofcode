@@ -10,12 +10,12 @@ def getResult( data ):
 
 def chineseRemainderTheorem( buses ):
 	n = buses.keys()
-	a = [buses[x] for x in n]
+	a = [ buses[x] for x in n ]
 	M = reduce( operator.mul, n )
 	m = [ M//x for x in n ]
 	mi = [ inv(m[i], x) for (i, x) in enumerate( n ) ]
 	Y = sum ( [ mi[i] * m[i] * x for (i, x) in enumerate( a ) ] )
-	return Y%M	
+	return Y%M
 
 def readData( filename ):
 	return [ x for x in open( filename ).read().strip().split( '\n' ) ][1].split(",")
@@ -27,31 +27,18 @@ def runTest( testData, expected ):
 	print("Test failed, expected {} got {}".format( expected, result ) )
 	return False
 
-# This is not my method.
-# I don't know it works *sigh*
-# It was written by by Nikita Tiwari
-def inv(a, m) : 
-	m0 = m 
-	x0 = 0
-	x1 = 1
-	if (m == 1) : 
+def inv(m, n) :
+	if (n == 1) :
 		return 0
-	# Apply extended Euclid Algorithm 
-	while (a > 1) : 
-		# q is quotient 
-		q = a // m 
-		t = m 
-		# m is remainder now, process 
-		# same as euclid's algo 
-		m = a % m 
-		a = t 
-		t = x0 
-		x0 = x1 - q * x0 
-		x1 = t 
-	# Make x1 positive 
-	if (x1 < 0) : 
-		x1 = x1 + m0 
-	return x1 
+	n0 = n
+	x0, x1 = 0, 1
+	while (m > 1) :
+		q = m // n
+		m, n = n, m % n
+		x0 , x1= x1 - q * x0 , x0
+	if (x1 < 0) :
+		x1 += n0
+	return x1
 
 tests = []
 tests.append( ("17,x,13,19".split(","), 3417 ) )
