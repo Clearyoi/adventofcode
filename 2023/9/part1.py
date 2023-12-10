@@ -5,7 +5,6 @@ def isAllZero(pattern):
 	return True
 
 def figureOutNext(pattern):
-	print(pattern)
 	newPattern = []
 	for i, x in enumerate(pattern):
 		if i == 0:
@@ -14,7 +13,6 @@ def figureOutNext(pattern):
 	if isAllZero(newPattern):
 		return pattern[-1]
 	answer = figureOutNext(newPattern) + pattern[-1]
-	print('>', answer)
 	return answer
 
 def getResult( lines ):
