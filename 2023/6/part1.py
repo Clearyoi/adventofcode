@@ -1,5 +1,3 @@
-import re
-
 def calcDist(holdFor, time):
 	if holdFor >= time:
 		return 0
